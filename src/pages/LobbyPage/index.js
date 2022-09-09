@@ -5,16 +5,23 @@ import SummonerLobbyBar from "../../components/SummonerLobbyBar";
 
 import {
 	ErrorMessage,
-	ExampleString,
+	Footer,
 	LobbyDecision,
+	LobbyImg,
 	LobbyPageWrapper,
+	SummonerWrapper,
 } from "./styles";
 
 import { useGlobalState, setGlobalState } from "../../state";
 
-const baseUrl = "http://127.0.0.1:8000";
+const baseUrl =
+	process.env.REACT_APP_PROD === "prod"
+		? "https://searchzrift.herokuapp.com"
+		: "http://127.0.0.1:8000";
+
 const searchLobbyUrl = `${baseUrl}/api/lobby/`;
 
+const lobbyExampleImage = require("../../assets/lobby_example.png");
 let summoners = [];
 let validString = false;
 
@@ -108,18 +115,21 @@ const LobbyPage = () => {
 
 	if (lobbyState === -1 || lobbyState === 0) {
 		return (
-			<LobbyPageWrapper>
+			<LobbyPageWrapper scroll={false}>
 				<LobbyDecision>LOADING</LobbyDecision>
-				<SummonerLobbyBar name={summoners[0]} data={"loading"} />
-				<SummonerLobbyBar name={summoners[1]} data={"loading"} />
-				<SummonerLobbyBar name={summoners[2]} data={"loading"} />
-				<SummonerLobbyBar name={summoners[3]} data={"loading"} />
-				<SummonerLobbyBar name={summoners[4]} data={"loading"} />
+				<SummonerWrapper>
+					<SummonerLobbyBar name={summoners[0]} data={"loading"} />
+					<SummonerLobbyBar name={summoners[1]} data={"loading"} />
+					<SummonerLobbyBar name={summoners[2]} data={"loading"} />
+					<SummonerLobbyBar name={summoners[3]} data={"loading"} />
+					<SummonerLobbyBar name={summoners[4]} data={"loading"} />
+				</SummonerWrapper>
+				<Footer />
 			</LobbyPageWrapper>
 		);
 	} else if (lobbyState === 1) {
 		return (
-			<LobbyPageWrapper>
+			<LobbyPageWrapper scroll={true}>
 				<LobbyDecision>
 					{dodgeOrPlay([
 						lobbyData[summoners[0]],
@@ -129,29 +139,40 @@ const LobbyPage = () => {
 						lobbyData[summoners[4]],
 					])}
 				</LobbyDecision>
-				<SummonerLobbyBar name={summoners[0]} data={lobbyData[summoners[0]]} />
-				<SummonerLobbyBar name={summoners[1]} data={lobbyData[summoners[1]]} />
-				<SummonerLobbyBar name={summoners[2]} data={lobbyData[summoners[2]]} />
-				<SummonerLobbyBar name={summoners[3]} data={lobbyData[summoners[3]]} />
-				<SummonerLobbyBar name={summoners[4]} data={lobbyData[summoners[4]]} />
+				<SummonerWrapper>
+					<SummonerLobbyBar
+						name={summoners[0]}
+						data={lobbyData[summoners[0]]}
+					/>
+					<SummonerLobbyBar
+						name={summoners[1]}
+						data={lobbyData[summoners[1]]}
+					/>
+					<SummonerLobbyBar
+						name={summoners[2]}
+						data={lobbyData[summoners[2]]}
+					/>
+					<SummonerLobbyBar
+						name={summoners[3]}
+						data={lobbyData[summoners[3]]}
+					/>
+					<SummonerLobbyBar
+						name={summoners[4]}
+						data={lobbyData[summoners[4]]}
+					/>
+				</SummonerWrapper>
+				<Footer />
 			</LobbyPageWrapper>
 		);
 	} else if (lobbyState === 2) {
 		return (
-			<LobbyPageWrapper>
+			<LobbyPageWrapper scroll={false}>
 				<LobbyDecision>ERROR</LobbyDecision>
 				<ErrorMessage>
-					You may have entered an invalid string. Try to copy paste the 5
-					players from your champion select lobby in the League of Legends
-					Client. The string formats below should work:
+					You may have entered an invalid string. Copy paste the 5 players from
+					your champion select lobby in the League of Legends Client.
 				</ErrorMessage>
-				<ExampleString>
-					Summoner1 joined the lobby Summoner2 joined the lobby Summoner3 joined
-					the lobby Summoner4 joined the lobby Summoner 5 joined the lobby
-				</ExampleString>
-				<ExampleString>
-					Summoner1, Summoner2, Summoner3, Summoner4, Summoenr5
-				</ExampleString>
+				<LobbyImg src={lobbyExampleImage} alt={"league client lobby"} />
 			</LobbyPageWrapper>
 		);
 	}

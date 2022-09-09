@@ -12,8 +12,8 @@ from .helpers import get_lobby_match_rating, get_main_role
 def get_lobby_summoner_stats(summoner_name, puuid, summoner_id, server, region):
     season_start_time = str(region_to_season_12_start_time_map[region])
     # print(region, puuid, season_start_time)
-    url = "https://" + region + ".api.riotgames.com/lol/match/v5/matches/by-puuid/" + puuid + "/ids?startTime=" + season_start_time + "&queue=420&type=ranked&start=0&count=10"
-    # url = "https://" + region + ".api.riotgames.com/lol/match/v5/matches/by-puuid/" + puuid + "/ids?startTime=" + season_start_time + "&queue=400&type=normal&start=0&count=20"
+    url = "https://" + region + ".api.riotgames.com/lol/match/v5/matches/by-puuid/" + puuid + "/ids?startTime=" + season_start_time + "&queue=420&type=ranked&start=0&count=8"
+    # url = "https://" + region + ".api.riotgames.com/lol/match/v5/matches/by-puuid/" + puuid + "/ids?startTime=" + season_start_time + "&queue=400&type=normal&start=0&count=8"
     res = requests.get(url, headers=RIOT_API_KEY_HEADER)
     match_list = list(res.json())
 

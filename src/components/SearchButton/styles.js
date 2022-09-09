@@ -4,6 +4,7 @@ import Color from "../../assets/colors";
 
 export const SearchButtonWrapper = styled.button`
 	height: 50px;
+	min-height: 50px;
 	width: 100px;
 	display: inline-block;
 	border-radius: 10px;

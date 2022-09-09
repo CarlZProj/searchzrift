@@ -3,7 +3,8 @@ import styled from "styled-components";
 import Color from "../../assets/colors";
 
 export const HeaderBarWrapper = styled.div`
-	height: 20vh;
+	height: 10vh;
+	min-height: 100px;
 	padding: 20px;
 	border: 2px solid ${Color.white};
 	display: flex;
@@ -11,6 +12,7 @@ export const HeaderBarWrapper = styled.div`
 
 	@media screen and (max-width: 1025px) {
 		height: 40vh;
+		min-height: 200px;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -19,6 +21,7 @@ export const HeaderBarWrapper = styled.div`
 
 export const Title = styled.button`
 	height: 50px;
+	min-height: 50px;
 	width: 20vw;
 	border: none;
 	background: ${Color.deep_violet};
@@ -33,6 +36,7 @@ export const Title = styled.button`
 
 export const SummonerSearchBarInput = styled.input`
 	height: 50px;
+	min-height: 50px;
 	width: 40vw;
 	display: inline-flex;
 	margin: 0 10px;
@@ -48,6 +52,7 @@ export const SummonerSearchBarInput = styled.input`
 
 export const ServerSelect = styled.select`
 	height: 50px;
+	min-height: 50px;
 	width: 15vw;
 	display: inline-flex;
 	margin: 0 10px;
@@ -62,6 +67,7 @@ export const ServerSelect = styled.select`
 
 export const ServerOption = styled.option`
 	height: 50px;
+	min-height: 50px;
 	width: 10vw;
 	display: inline-flex;
 	margin: 0 10px;

@@ -35,7 +35,7 @@ const getMainRoleIcon = (tier, mainRole) => {
 };
 
 const SummonerLobbyBar = ({ name, data }) => {
-	if (data == null) {
+	if (data === null) {
 		return (
 			<SummonerLobbyBarWrapper matchRating={null} dne={true}>
 				<Name dne={true}>{name}</Name>
@@ -44,7 +44,7 @@ const SummonerLobbyBar = ({ name, data }) => {
 		);
 	}
 
-	if (data == "loading") {
+	if (data === "loading") {
 		return (
 			<SummonerLobbyBarWrapper matchRating={null} dne={true}>
 				<Name dne={true}>{name}</Name>
@@ -53,7 +53,7 @@ const SummonerLobbyBar = ({ name, data }) => {
 		);
 	}
 
-	if (data.tier == null) data.tier = "UNRANKED";
+	if (data.tier === null) data.tier = "UNRANKED";
 
 	return (
 		<SummonerLobbyBarWrapper matchRating={round(data.match_rating)}>
@@ -64,11 +64,11 @@ const SummonerLobbyBar = ({ name, data }) => {
 			<MainRole>
 				<MainRoleIcon
 					src={getMainRoleIcon(data.tier, data.main_role)}
-					alt="Main Role Icon"
+					alt="main role icon"
 				/>
 			</MainRole>
 			<InfoWrapper responsivePlacement={"left"}>
-				<InfoTextSmall>Winrate in last 10</InfoTextSmall>
+				<InfoTextSmall>Winrate in last 8</InfoTextSmall>
 				<InfoTextLarge>{convertToPercent(data.win_rate)}</InfoTextLarge>
 			</InfoWrapper>
 			<InfoWrapper size={"large"} responsivePlacement={"center"}>
